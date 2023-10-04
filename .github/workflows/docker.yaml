@@ -48,6 +48,6 @@ jobs:
           context: .
           file: chrome-report.Dockerfile
           push: true
-          tags: chromedriver-${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }}-chromedriver
           labels: ${{ steps.meta.outputs.labels }}
           build-args: "SUPERSET_VERSION=${{ steps.meta.outputs.version }}"
