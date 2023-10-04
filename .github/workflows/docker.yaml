@@ -41,3 +41,13 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: "SUPERSET_VERSION=${{ steps.meta.outputs.version }}"
+
+      - name: Build and push Docker with chromedriver
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: chrome-report.Dockerfile
+          push: true
+          tags: chromedriver-${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: "SUPERSET_VERSION=${{ steps.meta.outputs.version }}"
