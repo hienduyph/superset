@@ -6,9 +6,8 @@ USER root
 RUN apt update  \
   && apt install -y pkg-config libmariadb-dev \
   && apt install --reinstall build-essential -y \
-  && /app/.venv/bin/python -m ensurepip \
-  && /app/.venv/bin/python -m pip install --no-cache -e '.[postgres,trino,redshift,mysql,bigquery,gsheets,athena,clickhouse,cors,druid,mysql,redshift,starrocks,doris,presto,impala,elasticsearch,hive]'\
-  && /app/.venv/bin/python -m pip install --no-cache 'flask-appbuilder[oauth]' duckdb-engine Flask-OIDC Flask-OpenID  google-cloud-bigquery-storage \
+  && uv pip install --no-cache -e '.[postgres,trino,redshift,mysql,bigquery,gsheets,athena,clickhouse,cors,druid,mysql,redshift,starrocks,doris,presto,impala,elasticsearch,hive]' PyJWT==2.9.0 \
+  && uv pip install --no-cache 'flask-appbuilder[oauth]' duckdb-engine Flask-OIDC Flask-OpenID  google-cloud-bigquery-storage \
   && apt autoremove -y pkg-config build-essential \
   && rm -rf /var/lib/{apt,dpkg,cache,log}/
 
